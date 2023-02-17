@@ -1,0 +1,33 @@
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.field__lable {
+	font-size: 18px;
+	color: var(--color-primary);
+}
+
+.field__input {
+	outline: none;
+	border: none;
+	border-bottom: 2px solid var(--color-primary);
+	font-size: 20px;
+	background: inherit;
+}
+
+.field__error {
+	display: block;
+	color: red;
+}
+
+.form__btn {
+	border: none;
+	width: 200px;
+	height: 30px;
+	cursor: pointer;
+	background-color: var(--color-primary);
+	font-size: 18px;
+	border-radius: 10px;
+}

@@ -22,28 +22,9 @@ export const Form = () => {
 	const navigate = useNavigate()
 	const { error } = useAppSelector((state) => state.auth)
 
-	// useEffect(() => {
-
-	// }, [formValues])
-
 	const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
 		const name = e.target.name
-
-		if (name === 'username') {
-			setFormErrors({
-				...formErrors,
-				[name]: validate(formValues).username,
-			})
-		}
-
-		if (name === 'password') {
-			setFormErrors({
-				...formErrors,
-				[name]: validate(formValues).password,
-			})
-		}
-
 		dispatch(removeErr())
 
 		setFormValues({
@@ -52,11 +33,15 @@ export const Form = () => {
 		})
 	}
 
-	const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+	const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
-		if (formErrors.password.length === 0 && formErrors.username.length === 0) {
+		const errors = validate(formValues)
+
+		if (errors.username.length === 0 && errors.password.length === 0) {
 			dispatch(signIn(formValues)).then(() => navigate('/'))
+		} else {
+			setFormErrors(errors)
 		}
 	}
 

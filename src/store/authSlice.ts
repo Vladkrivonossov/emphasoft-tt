@@ -14,10 +14,14 @@ const initialState: IInitialState = {
 	status: null,
 }
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
-	reducers: {},
+	reducers: {
+		removeErr: (state) => {
+			state.error = null
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(signIn.pending, (state) => {
 			state.status = 'loading'

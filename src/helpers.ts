@@ -1,7 +1,5 @@
 import { IUserCredential } from './types'
 
-export const token = '2455b1c6c4d52df246fb042f60f21856a22f6a6b'
-
 export const validate = (userCredentials: IUserCredential) => {
 	let errors: IUserCredential = {
 		username: '',

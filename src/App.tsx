@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { Form } from './components/Form/Form'
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute'
 import { UserList } from './components/UserList/UserList'
@@ -26,6 +26,7 @@ export const App = () => {
 					</AuthPage>
 				}
 			/>
+			<Route path='*' element={<Navigate to='/' />} />
 		</Routes>
 	)
 }

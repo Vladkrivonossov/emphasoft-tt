@@ -20,6 +20,7 @@
 	border: none;
 	padding: 10px;
 	appearance: none;
+	cursor: pointer;
 	border-radius: 5px;
 }
 

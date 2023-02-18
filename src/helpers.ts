@@ -1,5 +1,4 @@
 import { IUserCredential } from './types'
-import { baseUrl } from './utils'
 
 export const token = '2455b1c6c4d52df246fb042f60f21856a22f6a6b'
 
@@ -18,11 +17,11 @@ export const validate = (userCredentials: IUserCredential) => {
 	}
 
 	if (userCredentials.password.length < 4) {
-		errors.password = 'password should be longer'
+		errors.password = 'password should be longer than 4'
 	}
 
 	if (userCredentials.password.length > 20) {
-		errors.password = 'password sould be less'
+		errors.password = 'password sould be less than 20'
 	}
 
 	return errors

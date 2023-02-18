@@ -2,7 +2,8 @@ import { Route, Routes } from 'react-router-dom'
 import { Form } from './components/Form/Form'
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute'
 import { UserList } from './components/UserList/UserList'
-import { Page } from './pages/Page'
+import { AuthPage } from './pages/AuthPage/AuthPage'
+import { UsersPage } from './pages/UsersPage/UsersPage'
 
 export const App = () => {
 	return (
@@ -11,18 +12,18 @@ export const App = () => {
 				path='/'
 				element={
 					<PrivateRoute>
-						<Page>
+						<UsersPage>
 							<UserList />
-						</Page>
+						</UsersPage>
 					</PrivateRoute>
 				}
 			/>
 			<Route
 				path='/sign-in'
 				element={
-					<Page>
+					<AuthPage>
 						<Form />
-					</Page>
+					</AuthPage>
 				}
 			/>
 		</Routes>

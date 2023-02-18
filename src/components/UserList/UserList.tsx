@@ -1,45 +1,31 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import { fetchUsers } from '../../store/usersSlice'
+import { CustomError } from '../CustomError/CustomError'
+import { Filter } from '../Filter/Filter'
+import { UserCard } from '../UserCard/UserCard'
 import './UserList.css'
 
-interface IUser {
-	id: number
-	username: string
-	first_name: string
-	last_name: string
-	is_active: boolean
-	last_login: string | null
-	is_superuser: boolean
-}
-
 export const UserList = () => {
-	const [users, setUsers] = useState<IUser[]>([])
-	const token = localStorage.getItem('token')
+	const { filtredUsers, status, error } = useAppSelector((state) => state.users)
+	const dispatch = useAppDispatch()
 
-	const fetchUsers = async () => {
-		const res = await fetch('https://test-assignment.emphasoft.com/api/v1/users', {
-			method: 'GET',
-			headers: {
-				Authorization: `token ${token}`,
-			},
-		})
-
-		const users = await res.json()
-
-		setUsers(users)
-	}
 	useEffect(() => {
-		fetchUsers()
-	}, [])
+		dispatch(fetchUsers())
+	}, [dispatch])
 
 	return (
-		<div>
-			{users.map((user) => {
-				return (
-					<div key={user.id} style={{ display: 'block' }}>
-						{user.username}
-					</div>
-				)
-			})}
-		</div>
+		<>
+			<Filter />
+			{status === 'loading' && <h1>loading...</h1>}
+			{status === 'resolved' && (
+				<div className='list__container'>
+					{filtredUsers.map((user) => {
+						return <UserCard key={user.id} user={user} />
+					})}
+				</div>
+			)}
+			{status === 'rejected' && <CustomError message={error} />}
+		</>
 	)
 }

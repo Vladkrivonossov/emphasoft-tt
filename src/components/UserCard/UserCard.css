@@ -1,0 +1,44 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	width: 220px;
+	height: 100px;
+	background-color: var(--color-grey);
+	animation: cardAnimaton 0.5s ease-in;
+	border-radius: 15px;
+}
+
+.uid__title,
+.uname__title {
+	font-weight: bold;
+}
+
+.uid__value,
+.uname__value {
+	color: var(--color-primary);
+}
+
+@keyframes cardAnimaton {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@media (min-width: 768px) {
+	.card {
+		font-size: 20px;
+		width: 240px;
+		height: 120px;
+	}
+}

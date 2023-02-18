@@ -4,6 +4,7 @@ import { validate } from '../../helpers'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { signIn } from '../../store/authSlice'
 import { IUserCredential } from '../../types'
+import { CustomError } from '../CustomError/CustomError'
 import { Input } from '../Input/Input'
 import './Form.css'
 
@@ -47,9 +48,7 @@ export const Form = () => {
 
 	return (
 		<form className='form' onSubmit={submitHandler}>
-			<h2>{error}</h2>
 			<h1 className='form__title'>Sign in</h1>
-
 			<Input
 				id='username'
 				name='username'
@@ -69,6 +68,8 @@ export const Form = () => {
 				onChange={changeHandler}
 				error={formErrors.password}
 			/>
+
+			<CustomError message={error} />
 			<button className='form__btn' type='submit'>
 				sign in
 			</button>
